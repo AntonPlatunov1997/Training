@@ -31,8 +31,7 @@ import java.util.Scanner;
             checkData(Regex.EMAIL);
             System.out.println("Введите password");
             checkData(Regex.PASSWORD);
-            model.sendDataToNote();
-            model.printNote();
+
 
         }
 

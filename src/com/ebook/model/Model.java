@@ -5,7 +5,7 @@ import com.ebook.entity.Note;
 import java.util.ArrayList;
 
 public class Model {
-    private Note note = new Note();
+
     private ArrayList<String> list= new ArrayList();
 
     public ArrayList getList() {
@@ -18,21 +18,41 @@ public class Model {
     }
 
 
+public Note creatingNote(String name,String surName,String email,String password){
+        Note note = new Note(name,surName,password,email);
+        printNote(note);
 
 
-
-    public void printName(){
-        System.out.println(note.getName());
-    }
+        return note;
+}
 
     public void sendDataToNote(){
-        note.setName(getList().get(0).toString());
-        note.setSurname(getList().get(1).toString());
-        note.setEmail(getList().get(2).toString()) ;
-        note.setPassword(getList().get(3).toString());
+       creatingNote(getList().get(0).toString(),getList().get(1).toString(),getList().get(2).toString(),getList().get(3).toString());
+
     }
 
-    public void printNote(){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    public void printName(){
+//        System.out.println(note.getName());
+//    }
+
+
+//
+    public void printNote(Note note){
         System.out.println(note.getName());
         System.out.println(note.getSurname());
         System.out.println(note.getEmail());
