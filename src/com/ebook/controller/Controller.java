@@ -45,7 +45,7 @@ import java.util.Scanner;
                    view.print(Messages.WRONG_INPUT_DATA);
                    res =sc.nextLine();
                }else {
-                   System.out.println("Cool");
+
                    model.fillList(res);
                    break;
                }
