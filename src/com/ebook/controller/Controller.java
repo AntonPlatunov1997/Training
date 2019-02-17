@@ -1,6 +1,7 @@
 package com.ebook.controller;
 
 import com.ebook.model.Model;
+import com.ebook.view.Messages;
 import com.ebook.view.View;
 
 import java.util.Scanner;
@@ -17,48 +18,38 @@ import java.util.Scanner;
 
         public void processUser() {
             start();
-            view.print(model.getList());
+
 
 
         }
 
         public void start(){
-            System.out.println("Введите имя");
+            view.print(Messages.NAME_MESSAGE);
             checkData(Regex.NAME);
-            System.out.println("Введите surname");
-            checkData(Regex.SUR_NAME);
-            System.out.println("Введите Email");
+            view.print(Messages.SURNAME_MESSAGE);
+            checkData(Regex.SURNAME);
+            view.print(Messages.EMAIL_MESSAGE);
             checkData(Regex.EMAIL);
-            System.out.println("Введите password");
+            view.print(Messages.PASSWORD_MESSAGE);
             checkData(Regex.PASSWORD);
+            model.sendDataToNote();
+
 
 
         }
 
        public void checkData(String regex){
-            checkDataWords(regex);
-
-
-
-
+           String res=sc.nextLine();
+           while (true){
+               if (!res.matches(regex)){
+                   view.print(Messages.WRONG_INPUT_DATA);
+                   res =sc.nextLine();
+               }else {
+                   System.out.println("Cool");
+                   model.fillList(res);
+                   break;
+               }
+           }
         }
-
-public void checkDataWords(String regex){
-          String res=sc.nextLine();
-    while (true){
-        if (!res.matches(regex)){
-            System.out.println("Wrong");
-            res =sc.nextLine();
-        }else {
-            System.out.println("Cool");
-            model.fillList(res);
-            break;
-        }
-
-    }
-
-}
-
-
     }
 
