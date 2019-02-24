@@ -10,12 +10,13 @@ import com.electronic.model.Model;
 import com.electronic.view.Messages;
 import com.electronic.view.View;
 
-import java.util.ArrayList;
+
 import java.util.Scanner;
 
 public class UtilityController {
-    private View view;
+    private View view = new View();
     private Model model;
+    
     private DBEmulator dbEmulator = new DBEmulator();
 
 
@@ -39,8 +40,8 @@ public String checkInputData(String regex){
         String name;
         String surName;
         String password;
-//        view.print(Messages.NAME_MESSAGE);
-        System.out.println("Name");
+        view.print(Messages.NAME_MESSAGE);
+//        System.out.println("Name");
         name =checkInputData(Regex.NAME);
         try {
             checkUnique(name,dbEmulator);
@@ -51,10 +52,11 @@ public String checkInputData(String regex){
         }
 
 
-//    view.print(Messages.SURNAME_MESSAGE);
-        System.out.println("surName");
+    view.print(Messages.SURNAME_MESSAGE);
+//        System.out.println("surName");
          surName= checkInputData(Regex.SURNAME);
-        System.out.println("password");
+//        System.out.println("password");
+        view.print(Messages.PASSWORD_MESSAGE);
         password= checkInputData(Regex.PASSWORD);
 
         creatingNote(name,surName,password);
