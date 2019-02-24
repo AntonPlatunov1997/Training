@@ -5,7 +5,7 @@ import com.electronic.exception.NameUniqueException;
 import com.electronic.model.entity.DBEmulator;
 import com.electronic.model.entity.Note;
 
-import com.electronic.model.Model;
+
 
 import com.electronic.view.Messages;
 import com.electronic.view.View;
@@ -15,8 +15,6 @@ import java.util.Scanner;
 
 public class UtilityController {
     private View view = new View();
-    private Model model;
-    
     private DBEmulator dbEmulator = new DBEmulator();
 
 
@@ -28,7 +26,7 @@ public String checkInputData(String regex){
 
     String res = sc.nextLine();
     while (!res.matches(regex)){
-        System.out.println("Wrong Input");
+        view.print(Messages.WRONG_INPUT_DATA);
         res =sc.nextLine();
     }
     return res;
@@ -36,36 +34,37 @@ public String checkInputData(String regex){
 }
     public void fillFildsNote(){
 
-//   model.manualCreatingNote();
+
         String name;
         String surName;
         String password;
         view.print(Messages.NAME_MESSAGE);
-//        System.out.println("Name");
+
         name =checkInputData(Regex.NAME);
+
+
+
+    view.print(Messages.SURNAME_MESSAGE);
+
+         surName= checkInputData(Regex.SURNAME);
+
+        view.print(Messages.PASSWORD_MESSAGE);
+        password= checkInputData(Regex.PASSWORD);
+
         try {
             checkUnique(name,dbEmulator);
         }catch (NameUniqueException ex){
             ex.printStackTrace();
-           System.exit(0);
+            System.exit(0);
 
         }
-
-
-    view.print(Messages.SURNAME_MESSAGE);
-//        System.out.println("surName");
-         surName= checkInputData(Regex.SURNAME);
-//        System.out.println("password");
-        view.print(Messages.PASSWORD_MESSAGE);
-        password= checkInputData(Regex.PASSWORD);
-
         creatingNote(name,surName,password);
 
 
     }
 
     public Note creatingNote(String name, String surName, String password){
-
+// во модель
 
         Note note = new Note(name,surName,password);
         dbEmulator.getDbList().add(note);

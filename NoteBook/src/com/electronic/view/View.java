@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 public class View {
     static String MESSAGES_BUNDLE_NAME = "messages";
+    public static final String HELLO_MESSAGE = "Welcome to 'Notebook' !";
 
     public static final ResourceBundle bundle =
             ResourceBundle.getBundle(MESSAGES_BUNDLE_NAME,
@@ -15,16 +16,16 @@ public class View {
                     new Locale("en"));
 
 
-
+    public void print (String message){
+        System.out.println(bundle.getString(message));
+    }
 
     public void print(ArrayList list){
         for(int i=0;i<list.size();i++){
             System.out.println(list.get(i));
         }
     }
-    public void print(String message){
-        System.out.println(message);
-    }
+
     public void print(Note note){
         System.out.println(note);
     }
